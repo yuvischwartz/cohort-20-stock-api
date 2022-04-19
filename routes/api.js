@@ -11,6 +11,12 @@ router.get('/search/:symbol', async function(req, res, next) {
     res.json(json.results[0].c)
 });
 
+router.post('/portfolio', async function(req, res, next) {
+    console.log('req.body is', req.body)
+    let portfolioRow = await models.Portfolio.create({symbol: req.body.stockName, quantity: req.body.quantity, price: req.body.stockPrice})
+    res.json(portfolioRow)
+});
+
 // Create routes for adding a row in the portfolio table
 // Create routes for removing a row in the portfolio table
 
